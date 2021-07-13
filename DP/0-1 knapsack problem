@@ -1,0 +1,15 @@
+//RECURSIVE
+int knapsack(vector<int> &val, vector<int> &wt, int n, int w)
+{
+	// Write your code here
+    if(n==0 || w==0){
+        return 0;
+    }
+    if(wt[n-1]<=w){
+        return max(val[n-1]+knapsack(val,wt,n-1,w-wt[n-1]),
+                 knapsack(val,wt,n-1,w));
+    }
+    else{
+        return knapsack(val,wt,n-1,w);
+    }
+}

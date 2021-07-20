@@ -1,4 +1,7 @@
-//RECURSIVE
+//*******************RECURSIVE*************************//
+//********************Time Complexity: O(2 ^ N)
+	Space Complexity: O(N)******************//
+	
 int knapsack(vector<int> &val, vector<int> &wt, int n, int w)
 {
 	// Write your code here

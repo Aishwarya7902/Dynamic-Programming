@@ -4,8 +4,8 @@ https://practice.geeksforgeeks.org/problems/subset-sum-problem-1611555638/1/?cat
 
 
 
-Time Complexity : O(N * K)
-    Space Complexity : O(N * K)
+Time Complexity : O(N * sum)
+    Space Complexity : O(N * sum)
 
 //
 class Solution{   

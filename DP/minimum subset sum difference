@@ -1,1 +1,46 @@
-
+class Solution{
+public:
+   int mn;
+ vector<bool> isSubsetSum(int N, int arr[], int sum){
+        // code here
+        bool t[N+1][sum+1];
+        for(int i=0;i<N+1;i++){
+            for(int j=0;j<sum+1;j++){
+                if(i==0){
+                    t[i][j]=false;
+                }
+                if(j==0){
+                    t[i][j]=true;
+                }
+            }
+        }
+        for(int i=1;i<N+1;i++){
+            for(int j=1;j<sum+1;j++){
+                if(arr[i-1]<=j){
+                    t[i][j]=t[i-1][j-arr[i-1]]|| t[i-1][j];
+                }
+                else
+                t[i][j]=t[i-1][j];
+            }
+        }
+       vector<bool>v;
+       for(int i=0;i<=sum/2;i++){
+           if(t[N][i]==true)v.push_back(i);
+       }
+       return v;
+  }
+int minDifference(int arr[], int n)  { 
+	    // Your code goes here
+	    int range=0;
+	    for(int i=0;i<n;i++){
+	        range+=arr[i];
+	    }
+	    vector<bool>curr=isSubsetSum(n,arr,range);
+	     mn=INT_MAX;
+	    for(int i=0;i<curr.size();i++){
+	        mn=min(mn,range-2*curr[i]);
+	    }
+	    return mn;
+	    
+	} 
+};

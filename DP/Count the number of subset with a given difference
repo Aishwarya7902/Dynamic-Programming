@@ -1,4 +1,4 @@
-***************************************************************************Time Complexity: O(S*N), where S = sum of array elements + K/2 
+***************************************************************************Time Complexity: O(S*N), where S = sum of array elements + K/2 (here k is the given difference)
                                                                     Auxiliary Space: O(S*N)**************************************************************
  BEST EXPLANATION OF THIS QUESTION: https://youtu.be/ot_XBHyqpFc                                                                  
 

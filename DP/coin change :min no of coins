@@ -46,5 +46,26 @@ else{
 }
     
 	} 
-	NOTE:WE CAN IMPROVE SPACE COMPLEXITY
+	NOTE:WE CAN IMPROVE SPACE COMPLEXITY...here is a better code
+	video explanation:https://youtu.be/jgiZlGzXMBw
+	
+	Expected Time Complexity: O(sum*n)
+        Expected Auxiliary Space: O(sum)
+
+	int minCoins(int coin[], int n, int sum) 
+	{ 
+	    // Your code goes here
+	   vector<int> dp(sum+1,sum+1);
+	   dp[0]=0;
+	   for(int i=0;i<=sum;i++){
+	       for(int j=0;j<n;j++){
+	           if(coin[j]<=i){
+	               dp[i]=min(dp[i],dp[i-coin[j]]+1);
+	           }
+	       }
+	   }
+	
+     return dp[sum] > sum ? -1 : dp[sum];
+	} 
+	
 	

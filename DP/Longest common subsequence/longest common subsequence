@@ -36,6 +36,9 @@ int lcs(int x, int y, string s1, string s2)
     }
     
     *******************************BOTTOM-UP APPROACH_________________(BEST)****************************
+    Expected Time Complexity : O(|str1|*|str2|)
+    Expected Auxiliary Space: O(|str1|*|str2|)
+    
      int lcs(int x, int y, string s1, string s2)
     {
         // your code here

@@ -1,7 +1,7 @@
 problem statement:https://practice.geeksforgeeks.org/problems/matrix-chain-multiplication0303/1#
 video explanation:https://youtu.be/kMK148J9qEE
 *****************************RECURSIVE********************
-
+Expected Time Complexity: exponential
 class Solution{
 public:
 int helper(int arr[],int i,int j){

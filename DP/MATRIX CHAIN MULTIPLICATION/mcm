@@ -21,6 +21,8 @@ int helper(int arr[],int i,int j){
 };
 
 *********************************************************MEMOIZATION***********************
+Expected Time Complexity: O(N3)
+Expected Auxiliary Space: O(N2)
 
 int static t[101][101];
 class Solution{

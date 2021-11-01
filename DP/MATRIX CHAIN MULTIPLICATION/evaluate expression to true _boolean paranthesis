@@ -61,3 +61,115 @@ int solve(string s,int i,int j,bool istrue){
         
     }
 };
+///////////////  MEMOIZATION _USING A 3D MATRIX  (PASSED ALL TEST CASES ON GFG)
+VIDEO:https://youtu.be/bzXM1Zond9U( ADITYA VERMA)
+Expected Time Complexity: O(N3)
+Expected Auxiliary Space: O(N2)
+(note :space came to be O(n2) not O(n3) becaue we used a 3d matrix of size dp[201][201][2]
+which is O(n2) not O(n3) coz 2 is small and we  can simply ignore it.
+
+
+
+int dp[201][201][2];
+
+class Solution{
+public:
+int solve(string s,int i,int j,bool istrue){
+    if(dp[i][j][istrue]!=-1)
+    return dp[i][j][istrue];
+    if(i>j)
+    return dp[i][j][istrue]=0;
+    if(i==j){
+        if(istrue==true){
+            if(s[i]=='T'){
+                return dp[i][j][istrue]=1;
+            }
+            else{
+               return  dp[i][j][istrue]=0;
+            }
+        }
+        else{
+           if(s[i]=='F'){
+               return dp[i][j][istrue]=1;
+           }
+           else{
+               return dp[i][j][istrue]=0;
+           }
+        }
+    }
+    int ans=0;
+    for(int k=i+1;k<j;k+=2){
+        int lt,lf,rt,rf;
+        if(dp[i][k-1][1]!=-1){
+            lt=dp[i][k-1][1];
+        }
+        else{
+            lt=solve(s,i,k-1,true);
+            dp[i][k-1][1]=lt;
+        }
+        if(dp[i][k-1][0]!=-1){
+            lf=dp[i][k-1][0];
+        }
+        else{
+            lf=solve(s,i,k-1,false);
+            dp[i][k-1][0]=lf;
+        }
+        if(dp[k+1][j][1]!=-1){
+            rt=dp[k+1][j][1];
+        }
+        else{
+            rt=solve(s,k+1,j,true);
+            dp[k+1][j][1]=rt;
+        }
+        if(dp[k+1][j][0]!=-1){
+            rf=dp[k+1][j][0];
+        }
+        else{
+            rf=solve(s,k+1,j,false);
+            dp[k+1][j][0]=rf;
+        }
+        
+        
+        
+        
+          if(s[k]=='&'){
+              if(istrue==true){
+                  ans+=lt*rt;
+              }
+              else{
+                  ans+=lf*rf+lt*rf+lf*rt;
+              }
+          }
+          else if(s[k]=='|'){
+              if(istrue==true){
+                  ans+=lt*rt+lt*rf+lf*rt;
+              }
+              else{
+                  ans+=lf*rf;
+              }
+          }
+          else if(s[k]=='^'){
+              if(istrue==true){
+                  ans+=lt*rf+lf*rt;
+              }
+              else{
+                  ans+=lt*rt+lf*rf;
+              }
+              
+          }
+    
+          
+          
+    }
+   return dp[i][j][istrue]=ans%1003;
+    
+}
+   
+    int countWays(int n, string s){
+        // code here
+        memset(dp,-1,sizeof(dp));
+        return solve(s,0,n-1,true);
+        
+        
+    }
+};

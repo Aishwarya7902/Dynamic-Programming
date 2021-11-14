@@ -1,0 +1,72 @@
+problem:   https://www.interviewbit.com/problems/scramble-string/
+video(for recursive approach):  https://youtu.be/SqA0o-DGmEw
+///////////////RECURSIVE
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int Solution::isScramble(const string a, const string b) {
+    
+
+    if(a.length()!=b.length()){
+        return false;
+    }
+    if(a.length()==0 && b.length()==0){
+        return true;
+    }
+    if(a.compare(b)==0)
+    return true;
+    if(a.length()<=1)
+    return false;
+   
+    int n=a.length();
+    bool flag=false;
+    for(int i=1;i<=n-1;i++){
+        bool cond1=isScramble(a.substr(0,i),b.substr(n-i,i))==true && isScramble(a.substr(i,n-i),b.substr(0,n-i))==true ;
+        bool cond2=isScramble(a.substr(0,i),b.substr(0,i))==true && isScramble(a.substr(i,n-i),b.substr(i,n-i))==true ;
+        if(cond1 || cond2){
+            flag=true;
+            break;
+             }
+    }
+   return flag; 
+
+}
+
+/////////////MEMOIZATION  (ALL TEST CASES PASSED)
+#include<bits/stdc++.h>
+using namespace std;
+unordered_map<string,bool>mp;
+int Solution::isScramble(const string a, const string b) {
+    
+
+    if(a.length()!=b.length()){
+        return false;
+    }
+    if(a.length()==0 && b.length()==0){
+        return true;
+    }
+    if(a.compare(b)==0)
+    return true;
+    if(a.length()<=1)
+    return false;
+    string key=a;
+    key.push_back('_');
+    key.append(b);
+    if(mp.find(key)!=mp.end()){
+        return mp[key];
+    }
+    int n=a.length();
+    bool flag=false;
+    for(int i=1;i<=n-1;i++){
+        bool cond1=isScramble(a.substr(0,i),b.substr(n-i,i))==true && isScramble(a.substr(i,n-i),b.substr(0,n-i))==true ;
+        bool cond2=isScramble(a.substr(0,i),b.substr(0,i))==true && isScramble(a.substr(i,n-i),b.substr(i,n-i))==true ;
+        if(cond1 || cond2){
+            flag=true;
+            break;
+             }
+    }
+   return mp[key]=flag; 
+
+}
+

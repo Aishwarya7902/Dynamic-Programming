@@ -34,6 +34,7 @@ int Solution::isScramble(const string a, const string b) {
 }
 
 /////////////MEMOIZATION  (ALL TEST CASES PASSED)
+VIDEO: https://youtu.be/VyHEglhbm-A
 #include<bits/stdc++.h>
 using namespace std;
 unordered_map<string,bool>mp;

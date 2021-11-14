@@ -1,6 +1,13 @@
 problem:   https://www.interviewbit.com/problems/scramble-string/
+or https://leetcode.com/problems/scramble-string/
 video(for recursive approach):  https://youtu.be/SqA0o-DGmEw
 ///////////////RECURSIVE
+TIME:O(2N)
+Space Complexity
+The space complexity is given by O(N) where N is the length of either of the 2 strings.
+Since recursion uses a call stack, there will be N  calls to the function, and hence the space complexity is given by O(N). 
+
+
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -34,6 +41,16 @@ int Solution::isScramble(const string a, const string b) {
 }
 
 /////////////MEMOIZATION  (ALL TEST CASES PASSED)
+
+Time Complexity
+The time complexity of this approach is given by O(N2), where N is the length of the strings.
+
+Since every combination is computed only once, the time complexity of this approach is given by O(N*N), or simply O(N2).
+
+Space Complexity
+The space complexity of this approach is given by O(N2), where N is the length of the strings.
+
+Since every combination will be placed in the unordered_map, the space complexity of this approach is given by O(N*N), or simply O(N2).
 VIDEO: https://youtu.be/VyHEglhbm-A
 #include<bits/stdc++.h>
 using namespace std;

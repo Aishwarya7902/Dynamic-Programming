@@ -51,3 +51,43 @@ public:
         return solve(e,f);
     }
 };
+//////////////////more optimised (still TLE)
+class Solution {
+public:
+    int t[101][10001];
+    int solve(int e,int f){
+        if(f==0 || f==1)
+        {
+            return f;
+            
+        }
+        if(e==1){
+            return f;
+        }
+        if(t[e][f]!=-1)
+            return t[e][f];
+        int final=INT_MAX;
+        for(int k=1;k<=f;k++){
+            int low,high;
+            if(t[e-1][k-1]!=-1){
+                low=t[e-1][k-1];
+            }
+            else{
+                low=t[e-1][k-1]=solve(e-1,k-1);
+            }
+            if(t[e][f-k]!=-1){
+                high=t[e][f-k];
+            }
+            else{
+                high=t[e][f-k]=solve(e,f-k);
+            }
+            int temp=1+max(high,low);
+            final=min(final,temp);
+        }
+        return t[e][f]=final;
+    }
+    int superEggDrop(int e, int f) {
+        memset(t,-1,sizeof(t));
+        return solve(e,f);
+    }
+};

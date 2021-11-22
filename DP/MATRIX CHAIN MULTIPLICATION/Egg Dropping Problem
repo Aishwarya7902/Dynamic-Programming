@@ -1,0 +1,25 @@
+video(best explanation ):  https://youtu.be/UvksR0hR9nA
+problem:https://leetcode.com/problems/super-egg-drop/submissions/
+
+////////////RECURSIVE(GETTING TLE)
+Time Complexity: As there is a case of overlapping sub-problems the time complexity is exponential. (******O(2^floors ))
+Auxiliary Space :O(1). As there was no use of any data structure for storing values.
+class Solution {
+public:
+    int superEggDrop(int e, int f) {
+        if(f==0 || f==1)
+        {
+            return f;
+            
+        }
+        if(e==1){
+            return f;
+        }
+        int final=INT_MAX;
+        for(int k=1;k<=f;k++){
+            int temp=1+max(superEggDrop(e-1,k-1),superEggDrop(e,f-k));
+            final=min(final,temp);
+        }
+        return final;
+    }
+};

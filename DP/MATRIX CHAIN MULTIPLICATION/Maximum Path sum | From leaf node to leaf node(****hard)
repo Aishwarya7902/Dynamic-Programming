@@ -1,0 +1,50 @@
+problem:https://practice.geeksforgeeks.org/problems/maximum-path-sum/1#
+video soln:https://youtu.be/ArNyupe-XH0
+Expected Time Complexity: O(N)
+Expected Auxiliary Space: O(Height of Tree)
+
+
+class Solution {
+public:
+ int solve(Node* root,int& res){
+     if(root==NULL){
+         return 0;
+     }
+     if(root->left==NULL && root->right==NULL){
+         return root->data;
+     }
+     int l=solve(root->left,res);
+     int r=solve(root->right,res);
+    
+         
+     if(root->left!=NULL && root->right!=NULL){
+     res=max(res,l+r+root->data);
+     return max(l,r)+root->data;
+ }
+    if(root->left==NULL){
+        return root->data+r;
+    } 
+    if(root->right==NULL){
+        return root->data+l;
+    } 
+ }
+    int maxPathSum(Node* root)
+    {
+        // code here
+        int res = INT_MIN;
+   
+    int val = solve(root, res);
+           
+      
+   
+      if(res == INT_MIN)
+    {
+      return val;
+    }
+   
+    return res;
+        
+        
+    }
+};
+

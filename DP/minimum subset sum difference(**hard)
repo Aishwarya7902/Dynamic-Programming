@@ -1,4 +1,4 @@
-vector<bool> isSubsetSum(int N, int arr[], int sum){
+int isSubsetSum(int N, int arr[], int sum){
         // code here
         bool t[N+1][sum+1];
         for(int i=0;i<N+1;i++){
@@ -20,23 +20,20 @@ vector<bool> isSubsetSum(int N, int arr[], int sum){
                 t[i][j]=t[i-1][j];
             }
         }
-       vector<bool>v;
+       int ans=INT_MAX;
        for(int i=0;i<=sum/2;i++){
-           if(t[N][i]==true)v.push_back(i);
+           if(t[N][i]==true)
+           ans=min(ans,sum-2*i);
        }
-       return v;
+       return ans;
   }
-int minDifference(int arr[], int n)  { 
+  int minDifference(int arr[], int n)  { 
 	    // Your code goes here
 	    int range=0;
 	    for(int i=0;i<n;i++){
 	        range+=arr[i];
 	    }
-	    vector<bool>curr=isSubsetSum(n,arr,range);
-	     mn=INT_MAX;
-	    for(int i=0;i<curr.size();i++){
-	        mn=min(mn,range-2*curr[i]);
-	    }
-	    return mn;
-	    
+	  return  isSubsetSum(n,arr,range);
+	   
 	} 
+};

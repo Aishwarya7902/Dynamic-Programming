@@ -1,5 +1,7 @@
 ******************************************this problem is same as count of subset with a given difference
                         BEST EXPLANATION:https://youtu.be/Hw6Ygp3JBYw
+                        
+                        problem:https://practice.geeksforgeeks.org/problems/target-sum-1626326450/1#
                         Time Complexity: O(S*N), where S = sum of array elements + K/2 (here k is the given difference)
                                                           Auxiliary Space: O(S*N)************************************************************
 

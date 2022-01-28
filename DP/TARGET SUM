@@ -5,48 +5,44 @@
 
 
 #include<bits/stdc++.h>
-#include <iostream>
-using namespace std;
-int countsubs(vector<int>&arr,int n,int sum){
-     int  t[n+1][sum+1];
-    for(int i=0;i<n+1;i++){
-        for(int j=0;j<sum+1;j++){
-            if(i==0){
-                t[i][j]=0;
+class Solution {
+public:
+    int count(vector<int>& nums, int x,int n){
+        
+        int  t[n+1][x+1];
+        for(int i=0;i<=n;i++){
+            for(int j=0;j<=x;j++){
+                if(i==0){
+                    t[i][j]=0;
+                }
+                 if(j==0){
+                    t[i][j]=1;
+                }
             }
-            if(j==0)t[i][j]=1;
-            
         }
+            for(int i=1;i<=n;i++){
+            for(int j=0;j<=x;j++){
+                if(nums[i-1]<=j){
+                    t[i][j]=t[i-1][j-nums[i-1]]+t[i-1][j];
+                }
+                else{
+                    t[i][j]=t[i-1][j];
+                }
+            }
+            }
+        return t[n][x];
+        
     }
-for(int  i=1;i<=n;i++){
-    for(int j=1;j<=sum;j++){
-        if(arr[i-1]<=j){
-            t[i][j]=t[i-1][j]+t[i-1][j-arr[i-1]];
+    int findTargetSumWays(vector<int>& nums, int target) {
+     int n=nums.size();
+       target = abs(target);
+        int range=0;
+        for(auto it:nums){
+        range+=it;
         }
-        else{
-            t[i][j]=t[i-1][j];
-        }
+        int s1=(target+range)/2;
+         if(range < target || (range + target) % 2 != 0)
+            return 0;
+        return count(nums,s1,n);
     }
-}
-return t[n][sum];
-}
-int targetSum(vector<int>&arr,int n,int sum){
-    int total=0;
-    for(int i=0;i<n;i++){
-        total+=arr[i];
-    }
-    int s1=(total+sum)/2;
-    return countsubs(arr,n,s1);
-}
-
-int main() {
-     
-    int sum = 1, n = 4;
-    vector<int>arr = { 1, 1, 2, 3};
- 
-    // Function Call
-    cout << targetSum(arr, n, sum);
-    
-    
-	return 0;
-}
+};

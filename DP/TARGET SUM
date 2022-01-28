@@ -48,3 +48,14 @@ public:
         return count(nums,s1,n);
     }
 };
+
+
+/*some doubt that may arise later 
+can you please explain why in second for loop j started from 0 as in the previous for loops we already covered the case of j=0?
+
+ans to this is:If we start the j loop with j=1, then we will ignore the case when there is a zero in the array. For example, to make a subset with sum 0 - either we make
+an empty subset(this case can be taken care of by filling the 0th column with 1s) OR we make a subset with 0s present in the array. When we start the loop with j=0, we will 
+
+also be checking for the latter case i.e. Zero is present in the array. 
+The code given on GFG does not work for an array containing zeroes. Try dry running with an array that contains 0s with that code. Hope this helps.
+*/

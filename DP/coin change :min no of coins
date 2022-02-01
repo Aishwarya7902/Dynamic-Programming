@@ -51,6 +51,37 @@ int dp[12 + 1][10000 + 1];
     }
     
     */
+    
+    /* DP TABULATION 
+    TC:   O(N*AMOUNT)
+    SC:   O(N*AMOUNT)
+    int dp[12 + 1][10000 + 1];
+    int tabulation(vector<int>& coins, int amount,int n){
+        for(int i=0;i<=n;i++){
+            for(int j=0;j<=amount;j++){
+                if(i==0 || j==0){
+                    dp[i][j]=(j==0) ? 0 : INT_MAX-1;
+                }
+            }
+        }
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=amount;j++){
+                if(coins[i-1]<=j){
+                    dp[i][j]= min(1+dp[i][j-coins[i-1]],dp[i-1][j]);
+                }
+                else{
+                    dp[i][j]=dp[i-1][j];
+                }
+            }
+        }
+        return dp[n][amount];
+}
+    int coinChange(vector<int>& coins, int amount) {
+        memset(dp, -1, sizeof(dp));
+       int mincoin=INT_MAX-1; 
+        mincoin=tabulation(coins,amount,coins.size());
+        return mincoin==INT_MAX-1 ? -1 : mincoin;
+    }
 
 
 

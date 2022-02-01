@@ -23,6 +23,35 @@ int helper(vector<int>& coins, int amount,int n){
     }
 */
 
+/*MEMOIZATION :
+TC:
+SC:
+int dp[12 + 1][10000 + 1];
+    int helper(vector<int>& coins, int amount,int n){
+        if(n==0 || amount==0){
+            return (amount==0) ? 0 : INT_MAX-1;
+        }
+        if(dp[n][amount]!=-1){
+            return dp[n][amount];
+        }
+        
+        if(coins[n-1]<=amount){
+            return dp[n][amount]=min(1+helper(coins,amount-coins[n-1],n),helper(coins,amount,n-1));
+        }
+    
+    else{
+        return dp[n][amount]=helper(coins,amount,n-1);
+    }
+}
+    int coinChange(vector<int>& coins, int amount) {
+        memset(dp, -1, sizeof(dp));
+       int mincoin=INT_MAX-1; 
+        mincoin=helper(coins,amount,coins.size());
+        return mincoin==INT_MAX-1 ? -1 : mincoin;
+    }
+    
+    */
+
 
 
 

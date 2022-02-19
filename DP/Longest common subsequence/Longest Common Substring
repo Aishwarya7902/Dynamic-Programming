@@ -30,3 +30,34 @@ Expected Auxiliary Space: O(n*m)
         }
         return mx;
     }
+    
+    /*OPTIMISATION
+    Expected Time Complexity: O(n*m)
+    Expected Auxiliary Space: O(m)
+    */
+     int longestCommonSubstr (string S1, string S2, int n, int m)
+    {    int mx=0;
+        // your code here
+        int t[2][m+1];
+        for(int i=0;i<=n;i++){
+            for(int j=0;j<=m;j++){
+                if(i==0 || j==0){
+                    t[i%2][j]=0;
+                }
+               
+            }
+        }
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=m;j++){
+                
+                if(S1[i-1]==S2[j-1]){
+                    t[i%2][j]=1+t[(i+1)%2][j-1];
+                    mx=max(mx,t[i%2][j]);
+                }
+                else{
+                    t[i%2][j]=0;
+                }
+            }
+        }
+        return mx;
+    }
